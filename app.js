@@ -39,11 +39,8 @@ app.use('/users', users);
 app.use('/about', abouts);
 app.use('/todo', todos);
 
-// models.sequelize.sync().then(function() {
-//   var server = app.listen(app.get('port'), function() {
-//     console.log('Express server listening on port ' + server.address().port);
-//   });
-// });
+// sync models to database
+models.sequelize.sync()
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
