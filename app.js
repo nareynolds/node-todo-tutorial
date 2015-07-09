@@ -1,3 +1,4 @@
+// express dependencies
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,10 +6,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// url routing dependencies
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var about = require('./routes/about');
+var abouts = require('./routes/about');
+var todos = require('./routes/todo');
 
+// sequelize dependencies
+var models = require("./models");
+
+// init app
 var app = express();
 
 // view engine setup
@@ -29,7 +36,14 @@ app.use(express.static('public'));
 // wire in routes
 app.use('/', routes);
 app.use('/users', users);
-app.use('/about', about);
+app.use('/about', abouts);
+app.use('/todo', todos);
+
+// models.sequelize.sync().then(function() {
+//   var server = app.listen(app.get('port'), function() {
+//     console.log('Express server listening on port ' + server.address().port);
+//   });
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
